@@ -1,3 +1,86 @@
+// 'use client'
+
+// import { AnimatedLogo } from "@/components/animated-logo"
+// import { Button } from "@/components/ui/button"
+// import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+// import { Menu } from 'lucide-react'
+// import Link from "next/link"
+
+// const navigation = [
+//   { name: "How It Works", href: "#how-it-works" },
+//   { name: "Hampers", href: "#hampers" },
+//   { name: "Music Services", href: "#music-services" },
+//   { name: "Testimonials", href: "#testimonials" },
+// ]
+
+// export function SiteHeader() {
+//   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+//     e.preventDefault();
+//     const href = e.currentTarget.getAttribute('href');
+//     if (href && href.startsWith('#')) {
+//       const element = document.querySelector(href);
+//       if (element) {
+//         element.scrollIntoView({ behavior: 'smooth' });
+//         window.history.pushState({}, '', href);
+//       }
+//     }
+//   };
+
+//   return (
+//     <header className="w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+//       <div className="container flex flex-col">
+//         <AnimatedLogo />
+//         <div className="flex h-14 items-center justify-between">
+//           <nav className="hidden md:flex gap-6">
+//             {navigation.map((item) => (
+//               <Link
+//                 key={item.name}
+//                 href={item.href}
+//                 onClick={handleNavClick}
+//                 className="text-sm font-medium transition-colors hover:text-primary"
+//               >
+//                 {item.name}
+//               </Link>
+//             ))}
+//           </nav>
+//           <div className="flex flex-col-reverse items-center gap-4">
+//           {/* <Button asChild>
+//             <Link href="/checkout">
+//               Start Your Story
+//             </Link>
+//           </Button> */}
+//             <Sheet>
+//               <SheetTrigger asChild>
+//                 <Button variant="outline" size="icon" className="md:hidden">
+//                   <Menu className="h-6 w-6" />
+//                   <span className="sr-only">Toggle menu</span>
+//                 </Button>
+//               </SheetTrigger>
+//               <SheetContent side="right">
+//                 <nav className="flex flex-col gap-4">
+//                   {navigation.map((item) => (
+//                     <Link
+//                       key={item.name}
+//                       href={item.href}
+//                       onClick={(e) => {
+//                         handleNavClick(e);
+//                       }}
+//                       className="text-sm font-medium transition-colors hover:text-primary"
+//                     >
+//                       {item.name}
+//                     </Link>
+//                   ))}
+//                 </nav>
+//               </SheetContent>
+//             </Sheet>
+//           </div>
+//         </div>
+//       </div>
+//     </header>
+//   )
+// }
+
+
 'use client'
 
 import { AnimatedLogo } from "@/components/animated-logo"
@@ -30,28 +113,31 @@ export function SiteHeader() {
     <header className="w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex flex-col">
         <AnimatedLogo />
-        <div className="flex h-14 items-center justify-between">
-          <nav className="hidden md:flex gap-6">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={handleNavClick}
-                className="text-sm font-medium transition-colors hover:text-primary"
-              >
-                {item.name}
-              </Link>
-            ))}
+        <div className="relative flex h-14 items-center">
+          {/* Logo or branding could go here on the left */}
+          <div className="absolute left-0"></div>
+          
+          {/* Centered navigation for larger screens */}
+          <nav className="hidden md:flex items-center justify-center w-full">
+            <div className="flex gap-20 mx-auto max-w-4xl">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={handleNavClick}
+                  className="text-sm font-medium transition-colors hover:text-primary"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
           </nav>
-          <div className="flex items-center gap-4">
-          <Button asChild>
-            <Link href="/checkout">
-              Start Your Story
-            </Link>
-          </Button>
+
+          {/* Mobile menu button aligned to the right */}
+          <div className="md:hidden ml-auto">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="md:hidden">
+                <Button variant="outline" size="icon">
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Toggle menu</span>
                 </Button>
@@ -62,9 +148,7 @@ export function SiteHeader() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      onClick={(e) => {
-                        handleNavClick(e);
-                      }}
+                      onClick={handleNavClick}
                       className="text-sm font-medium transition-colors hover:text-primary"
                     >
                       {item.name}
@@ -79,4 +163,3 @@ export function SiteHeader() {
     </header>
   )
 }
-

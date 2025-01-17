@@ -22,7 +22,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20 bg-gradient-to-b from-pink-50 to-white">
+    <section id="how-it-works" className="py-20 bg-gradient-to-b from-pink-50 to-white px-10">
       <div className="container">
         <div className="text-center space-y-4 mb-12">
           <h2 className={`${playfair.className} text-3xl font-bold sm:text-4xl md:text-5xl`}>
@@ -52,11 +52,7 @@ export function HowItWorks() {
             </div>
           ))}
         </div>
-        <div className="mt-12 text-center">
-          <Button size="lg">
-            Start Now
-          </Button>
-        </div>
+        
       </div>
     </section>
   )

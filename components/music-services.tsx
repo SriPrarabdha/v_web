@@ -54,7 +54,7 @@ export function MusicServices() {
   }, []);
 
   return (
-    <section id="testimonials" className="py-20"> {/* Changed ID to testimonials */}
+    <section id="testimonials" className="py-20 px-10"> {/* Changed ID to testimonials */}
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-2 items-center">
           <div className="space-y-8">

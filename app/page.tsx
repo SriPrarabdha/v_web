@@ -8,7 +8,7 @@ import { SiteHeader } from "@/components/site-header"
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen max-w-screen w-100 contain flex-col ">
       <PromoBanner />
       <SiteHeader />
       <main className="flex-1">
@@ -22,3 +22,8 @@ export default function Home() {
   )
 }
 
+// how its work link
+// set toggle in right
+//contain page
+//link plans link
+//video section 9:16

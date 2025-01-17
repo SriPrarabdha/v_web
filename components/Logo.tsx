@@ -2,9 +2,9 @@ import React from 'react'
 
 export const Logo: React.FC = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center py-16 overflow-hidden">
+    <div className="relative flex flex-col items-center justify-center py-8 overflow-hidden">
       <div className="relative z-10 animate-float-medium">
-        <svg width="300" height="100" viewBox="0 0 300 100" className="fill-current text-[#F94D8F]">
+        <svg width="150" height="50" viewBox="0 0 300 100" className="fill-current text-[#F94D8F]">
           <defs>
             <path id="curve" d="M10 80 Q150 20 290 80" />
           </defs>

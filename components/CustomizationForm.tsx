@@ -3,8 +3,8 @@ import { Music, Calendar, Clock, Globe, Mic } from 'lucide-react'
 
 export const CustomizationForm: React.FC = () => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6">Customize Your Song</h2>
+    <div className="bg-white rounded-lg shadow-md p-6 item-center">
+      <h2 className="text-3xl font-bold item-center text-gray-800 mb-6">Customize Your Song</h2>
       <form className="space-y-4">
         <div>
           <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-1">
@@ -34,6 +34,7 @@ export const CustomizationForm: React.FC = () => {
             <option value="romantic">Romantic</option>
             <option value="joyful">Joyful</option>
             <option value="emotional">Emotional</option>
+            <option value="other">other</option>
           </select>
         </div>
 
@@ -48,9 +49,12 @@ export const CustomizationForm: React.FC = () => {
             required
           >
             <option value="">Select an occasion</option>
-            <option value="birthday">Birthday</option>
-            <option value="anniversary">Anniversary</option>
+            <option value="valentine">Valentine</option>
             <option value="proposal">Proposal</option>
+            <option value="anniversary">Anniversary</option>
+            <option value="wedding">Wedding</option>
+            <option value="birthday">Birthday</option>
+            
           </select>
         </div>
 
@@ -65,24 +69,8 @@ export const CustomizationForm: React.FC = () => {
             required
           >
             <option value="">Select song length</option>
-            <option value="2">2 minutes</option>
-            <option value="5">5 minutes</option>
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="delivery" className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
-            <Clock className="h-4 w-4 mr-1" /> Delivery Time
-          </label>
-          <select
-            id="delivery"
-            name="delivery"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F94D8F]"
-            required
-          >
-            <option value="">Select delivery time</option>
-            <option value="2">2 days</option>
-            <option value="5">5 days</option>
+            <option value="2">1-2 minutes</option>
+            <option value="5">2-3 minutes</option>
           </select>
         </div>
 
@@ -113,17 +101,30 @@ export const CustomizationForm: React.FC = () => {
             required
           >
             <option value="">Select preferred artist</option>
-            <option value="artist1">Artist 1</option>
-            <option value="artist2">Artist 2</option>
-            <option value="artist3">Artist 3</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
           </select>
+        </div>
+
+        <div>
+          <label htmlFor="text" className="block text-sm font-medium text-gray-700 mb-1">
+            Mention who is the song to and who is the song from
+          </label>
+          <input
+            type="text"
+            id="contact"
+            name="contact"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F94D8F]"
+            placeholder="This song is for my wife Neha!!"
+            required
+          />
         </div>
 
         <button
           type="submit"
           className="w-full bg-[#F94D8F] text-white px-6 py-3 rounded-full hover:bg-[#E43D7F] transition-colors text-lg font-semibold"
         >
-          Submit Your Request
+          Continue with Payment
         </button>
       </form>
     </div>

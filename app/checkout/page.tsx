@@ -22,42 +22,21 @@ export default function Home() {
       <Logo />
 
       {/* Navigation */}
-      <nav className="border-t border-b border-gray-100">
+      {/* <nav className="border-t border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between">
             <div className="flex space-x-8">
-              <Link href="#how-it-works" className="py-4 text-gray-700 hover:text-[#F94D8F]">
-                How It Works
+              <Link href="/" className="py-4 text-gray-700 hover:text-[#F94D8F]">
+                Home
               </Link>
-              <Link href="#hampers" className="py-4 text-gray-700 hover:text-[#F94D8F]">
-                Hampers
-              </Link>
-              <Link href="#music-services" className="py-4 text-gray-700 hover:text-[#F94D8F]">
-                Music Services
-              </Link>
-              <Link href="#testimonials" className="py-4 text-gray-700 hover:text-[#F94D8F]">
-                Testimonials
-              </Link>
+              
             </div>
             <button className="bg-[#F94D8F] text-white px-6 py-2 rounded-full hover:bg-[#E43D7F] transition-colors">
               Start Your Story
             </button>
           </div>
         </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 py-16">
-        <div className="max-w-2xl">
-          <h2 className="text-5xl font-bold leading-tight">
-            Turn Your Love Story Into a{' '}
-            <span className="font-script text-[#F94D8F]">Song</span> This Valentine&apos;s!
-          </h2>
-          <p className="mt-6 text-gray-600 text-lg">
-            Personalized songs and Valentine&apos;s hampers to make your moments unforgettable. Create a unique musical gift that will be cherished forever.
-          </p>
-        </div>
-      </section>
+      </nav> */}
 
       {/* Package Selection Section with Floating Elements */}
       <PackageSelection />
@@ -65,3 +44,5 @@ export default function Home() {
   )
 }
 
+// check for phone number
+// new input button for other in customization form

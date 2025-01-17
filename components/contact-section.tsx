@@ -7,7 +7,7 @@ import Link from "next/link"
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-white to-pink-50">
+    <section id="contact" className="py-20 bg-gradient-to-b from-white to-pink-50 px-10">
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-2">
           <div className="space-y-8">
@@ -36,17 +36,20 @@ export function ContactSection() {
                   <Link href="#" className="text-muted-foreground hover:text-pink-600 transition-colors">
                     <Instagram className="h-6 w-6" />
                   </Link>
-                  <Link href="#" className="text-muted-foreground hover:text-pink-600 transition-colors">
+                  {/* <Link href="#" className="text-muted-foreground hover:text-pink-600 transition-colors">
                     <Facebook className="h-6 w-6" />
                   </Link>
                   <Link href="#" className="text-muted-foreground hover:text-pink-600 transition-colors">
                     <Youtube className="h-6 w-6" />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
           </div>
           <div className="space-y-6">
+            <div className="text-xl bold">
+              Reach out to us for any further queries
+              </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium">
@@ -55,19 +58,19 @@ export function ContactSection() {
                 <Input id="name" placeholder="Your name" />
               </div>
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium">
-                  Email
+                <label htmlFor="tel" className="text-sm font-medium">
+                  Phone No.
                 </label>
-                <Input id="email" type="email" placeholder="Your email" />
+                <Input id="phone-no" type="tel" />
               </div>
             </div>
             <div className="space-y-2">
               <label htmlFor="message" className="text-sm font-medium">
-                Message
+                Any Queries
               </label>
               <Textarea
                 id="message"
-                placeholder="Tell us about your special occasion..."
+                placeholder="How will I recieve my song?"
                 className="min-h-[150px]"
               />
             </div>
