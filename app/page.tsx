@@ -5,6 +5,7 @@ import { HowItWorks } from "@/components/how-it-works"
 import { MusicServices } from "@/components/music-services"
 import { PromoBanner } from "@/components/promo-banner"
 import { SiteHeader } from "@/components/site-header"
+import { Footer } from "@/components/footer"
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <MusicServices />
         <HowItWorks />
         <ContactSection />
+        <Footer />
       </main>
     </div>
   )
