@@ -14,9 +14,9 @@ export default function PolicyPage() {
         <div className="space-y-12">
           {/* Information Usage Section */}
           <section>
-            <h2 className="text-2xl font-semibold mb-6">How Does Giftcart.com Use the Information Collected Digitally or Online?</h2>
+            <h2 className="text-2xl font-semibold mb-6">How Does myMelodiousMemories.com Use the Information Collected Digitally or Online?</h2>
             <div className="prose max-w-none">
-              <p className="mb-4">Giftcart.com uses the information you provide to:</p>
+              <p className="mb-4">myMelodiousMemories.com uses the information you provide to:</p>
               <ul className="list-disc pl-6 space-y-2 mb-6">
                 <li>Deliver products that you have ordered</li>
                 <li>Contact you or the product recipient(s) in the event of order delay or difficulty</li>
@@ -35,7 +35,7 @@ export default function PolicyPage() {
 
           {/* Information Sharing Section */}
           <section>
-            <h2 className="text-2xl font-semibold mb-6">What Information Does Giftcart.com Share With Third Parties?</h2>
+            <h2 className="text-2xl font-semibold mb-6">What Information Does myMelodiousMemories.com Share With Third Parties?</h2>
             <div className="prose max-w-none">
               <p className="mb-4">We may use third party vendors to help us provide services to you, such as:</p>
               <ul className="list-disc pl-6 space-y-2 mb-6">
@@ -50,7 +50,7 @@ export default function PolicyPage() {
                 <li>Administering and monitoring communications</li>
               </ul>
 
-              <p className="mb-4">Giftcart.com does not sell your data; however, we may make names and addresses available to our Advertising & Alliance Promotion Network (AAPN).</p>
+              <p className="mb-4">myMelodiousMemories.com does not sell your data; however, we may make names and addresses available to our Advertising & Alliance Promotion Network (AAPN).</p>
               
               <div className="bg-gray-50 p-6 rounded-lg mb-6">
                 <h3 className="text-lg font-semibold mb-2">Important Note</h3>
