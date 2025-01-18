@@ -13,10 +13,10 @@ export const Footer = () => {
             <ul className="space-y-2">
               <li><a href="/blog" className="hover:text-gray-300">Blog</a></li>
               <li><a href="" className="hover:text-gray-300">About Us</a></li>
-              <li><a href="/policy" className="hover:text-gray-300">Privacy Policy</a></li>
-              <li><a href="/shipping" className="hover:text-gray-300">Orders & Shipping</a></li>
-              <li><a href="/returns" className="hover:text-gray-300">Refund & Return</a></li>
-              <li><a href="/faqs" className="hover:text-gray-300">Miscellaneous Faqs</a></li>
+              <li><a href="/privacy-policy" className="hover:text-gray-300">Privacy Policy</a></li>
+              <li><a href="/delivery" className="hover:text-gray-300">Orders & Delivery</a></li>
+              <li><a href="/terms-condition" className="hover:text-gray-300">Refund & Return</a></li>
+              <li><a href="/faq" className="hover:text-gray-300">Miscellaneous Faqs</a></li>
               <li><a href="/faq" className="hover:text-gray-300">FAQ</a></li>
             </ul>
           </div>

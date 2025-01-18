@@ -5,10 +5,11 @@ import { SiteHeader } from "@/components/site-header"
 export default function PolicyPage() {
   return (
     <main className="container mx-auto px-4 py-16">
-      <div className="max-w-4xl mx-auto">
+      <PromoBanner />
+      <SiteHeader />
+      <div className="max-w-4xl mx-auto gap-16 py-12">
         {/* Header */}
-        <PromoBanner />
-        <SiteHeader />
+
 
         {/* Content Sections */}
         <div className="space-y-12">
