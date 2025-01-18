@@ -27,13 +27,13 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="font-medium">Email Us</p>
-                  <p className="text-muted-foreground">hello@melodiousmemories.com</p>
+                  <p className="text-muted-foreground">help@mymelodiousmemories.in</p>
                 </div>
               </div>
               <div className="space-y-2">
                 <p className="font-medium">Follow Us</p>
                 <div className="flex gap-4">
-                  <Link href="#" className="text-muted-foreground hover:text-pink-600 transition-colors">
+                  <Link href="https://www.instagram.com/_melodious_memories?igsh=YzB4M3F6eHhlaHZz" className="text-muted-foreground hover:text-pink-600 transition-colors">
                     <Instagram className="h-6 w-6" />
                   </Link>
                   {/* <Link href="#" className="text-muted-foreground hover:text-pink-600 transition-colors">
