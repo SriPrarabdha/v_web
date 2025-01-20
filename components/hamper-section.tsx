@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge"
 import { playfair } from "@/app/layout"
 import { Music, Film, Star, Check, ArrowRight } from 'lucide-react'
 import { useState } from "react"
+import { useRouter } from 'next/navigation'
 
 const plans = [
   {
@@ -65,6 +66,11 @@ const plans = [
 
 export function HamperSection() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const router = useRouter()
+
+  const handleOrderClick = (planType: string) => {
+    router.push(`/checkout?plan=${planType.toLowerCase().split(' ')[0]}`)
+  }
 
   return (
     <section id="hampers" className="py-20 bg-gradient-to-b from-white to-pink-50">
@@ -139,6 +145,7 @@ export function HamperSection() {
                     className="w-full group"
                     size="lg"
                     variant={plan.popular ? "default" : "outline"}
+                    onClick={() => handleOrderClick(plan.title)}
                   >
                     <span className="mr-2">Order Now</span>
                     <ArrowRight 
@@ -169,4 +176,3 @@ export function HamperSection() {
     </section>
   )
 }
-
