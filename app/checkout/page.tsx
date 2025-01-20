@@ -1,9 +1,9 @@
 import { Logo } from '@/components/Logo'
-import { PackageSelection } from '@/components/PackageSelection'
+import { CustomizationForm } from '@/components/CustomizationForm'
 import Link from 'next/link'
 import { X } from 'lucide-react'
 
-export default function Home() {
+export default function Checkout() {
   return (
     <main className="min-h-screen bg-white">
       {/* Top Banner */}
@@ -21,25 +21,10 @@ export default function Home() {
       {/* Logo */}
       <Logo />
 
-      {/* Navigation */}
-      {/* <nav className="border-t border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <div className="flex space-x-8">
-              <Link href="/" className="py-4 text-gray-700 hover:text-[#F94D8F]">
-                Home
-              </Link>
-              
-            </div>
-            <button className="bg-[#F94D8F] text-white px-6 py-2 rounded-full hover:bg-[#E43D7F] transition-colors">
-              Start Your Story
-            </button>
-          </div>
-        </div>
-      </nav> */}
-
-      {/* Package Selection Section with Floating Elements */}
-      <PackageSelection />
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <CustomizationForm />
+      </div>
     </main>
   )
 }

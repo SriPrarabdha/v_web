@@ -6,6 +6,7 @@ import { MusicServices } from "@/components/music-services"
 import { PromoBanner } from "@/components/promo-banner"
 import { SiteHeader } from "@/components/site-header"
 import { Footer } from "@/components/footer"
+import { WhatsAppButton } from "@/components/whatsapp-button"
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <ContactSection />
         <Footer />
       </main>
+      <WhatsAppButton />
     </div>
   )
 }
