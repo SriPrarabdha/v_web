@@ -5,19 +5,17 @@ import { Button } from "@/components/ui/button"
 export const Footer = () => {
   return (
     <footer className="bg-zinc-800 text-white py-16">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="flex flex-col md:flex-row justify-center gap-12 md:gap-24">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="flex flex-col md:flex-row justify-center gap-16 md:gap-32 lg:gap-40">
           {/* Information Column */}
           <div>
             <h3 className="font-semibold text-2xl mb-6">INFORMATION</h3>
             <ul className="space-y-3">
-              <li><a href="/blog" className="hover:text-gray-300 text-gray-300">Blog</a></li>
-              <li><a href="" className="hover:text-gray-300 text-gray-300">About Us</a></li>
+              <li><a href="/" className="hover:text-gray-300 text-gray-300">About Us</a></li>
               <li><a href="/privacy-policy" className="hover:text-gray-300 text-gray-300">Privacy Policy</a></li>
               <li><a href="/delivery" className="hover:text-gray-300 text-gray-300">Orders & Delivery</a></li>
-              <li><a href="/terms-condition" className="hover:text-gray-300 text-gray-300">Refund & Return</a></li>
+              <li><a href="/terms-condition" className="hover:text-gray-300 text-gray-300">Terms & Condition</a></li>
               <li><a href="/faq" className="hover:text-gray-300 text-gray-300">Miscellaneous FAQs</a></li>
-              <li><a href="/faq" className="hover:text-gray-300 text-gray-300">FAQ</a></li>
             </ul>
           </div>
 
@@ -26,7 +24,7 @@ export const Footer = () => {
             <h3 className="font-semibold text-2xl mb-6">ABOUT US</h3>
             <div className="space-y-4 text-gray-300">
               <p className="max-w-sm">
-                M7 Corporation tech team proudly presents A Custom Song, 
+                Melodious Memories tech team proudly presents A Custom Song, 
                 an innovative project designed to create meaningful musical 
                 experiences for our community.
               </p>
