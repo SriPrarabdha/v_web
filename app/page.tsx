@@ -14,13 +14,13 @@ export default function Home() {
       <PromoBanner />
       <SiteHeader />
       <main className="flex-1">
-        <div className="container px-4 md:px-6 mx-auto">
+        {/* <div className="container px-4 md:px-6 mx-auto"> */}
           <HeroSection />
           <HamperSection />
           <MusicServices />
           <HowItWorks />
           <ContactSection />
-        </div>
+        {/* </div> */}
         <Footer />
       </main>
       <WhatsAppButton />
