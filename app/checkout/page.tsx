@@ -1,7 +1,10 @@
+"use client"
+
 import { Logo } from '@/components/Logo'
 import { CustomizationForm } from '@/components/CustomizationForm'
 import Link from 'next/link'
 import { X } from 'lucide-react'
+import { Suspense } from 'react'
 
 export default function Checkout() {
   return (
@@ -23,7 +26,9 @@ export default function Checkout() {
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <CustomizationForm />
+        <Suspense fallback={<div className="text-center">Loading form...</div>}>
+          <CustomizationForm />
+        </Suspense>
       </div>
     </main>
   )
