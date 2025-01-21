@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import { Music, Calendar, Clock, Globe, Mic } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
