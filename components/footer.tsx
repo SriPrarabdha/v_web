@@ -15,7 +15,7 @@ export const Footer = () => {
               <li><a href="/privacy-policy" className="hover:text-gray-300 text-gray-300">Privacy Policy</a></li>
               <li><a href="/delivery" className="hover:text-gray-300 text-gray-300">Orders & Delivery</a></li>
               <li><a href="/terms-condition" className="hover:text-gray-300 text-gray-300">Terms & Condition</a></li>
-              <li><a href="/faq" className="hover:text-gray-300 text-gray-300">Miscellaneous FAQs</a></li>
+              <li><a href="/refund" className="hover:text-gray-300 text-gray-300">Miscellaneous FAQs</a></li>
             </ul>
           </div>
 
