@@ -62,7 +62,7 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-pink-50 to-white py-20">
+    <section className="relative overflow-hidden bg-gradient-to-b from-pink-50 to-white py-20 px-4 md:px-6 mx-auto">
       <div className="floating-notes absolute inset-0 pointer-events-none">
         {mounted && Array.from({ length: 15 }).map((_, i) => (
           <div

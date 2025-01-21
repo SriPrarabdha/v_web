@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
 import { playfair } from "@/app/layout"
 import { Pause, Play, SkipBack, SkipForward, Volume2 } from 'lucide-react'
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 
 const testimonials = [
   {
@@ -38,23 +38,53 @@ export function MusicServices() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [volume, setVolume] = useState([75])
+  const videoRef = useRef<HTMLIFrameElement>(null)
+  const [hasIntersected, setHasIntersected] = useState(false)
 
-  // Add scroll into view functionality
+  const handleTestimonialChange = useCallback((direction: 'next' | 'prev') => {
+    setCurrentTestimonial((prev) => {
+      if (direction === 'next') {
+        return prev === testimonials.length - 1 ? 0 : prev + 1
+      } else {
+        return prev === 0 ? testimonials.length - 1 : prev - 1
+      }
+    })
+  }, [])
+
   useEffect(() => {
-    const hash = window.location.hash;
+    const hash = window.location.hash
     if (hash === '#testimonials') {
-      const element = document.getElementById('testimonials');
+      const element = document.getElementById('testimonials')
       if (element) {
-        // Add a slight delay to ensure smooth scrolling after page load
         setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+          element.scrollIntoView({ behavior: 'smooth' })
+        }, 100)
       }
     }
-  }, []);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasIntersected) {
+          setHasIntersected(true)
+        }
+      },
+      { threshold: 0.5 }
+    )
+
+    const videoSection = document.getElementById('video-section')
+    if (videoSection) {
+      observer.observe(videoSection)
+    }
+
+    return () => {
+      if (videoSection) {
+        observer.unobserve(videoSection)
+      }
+    }
+  }, [hasIntersected])
 
   return (
-    <section id="testimonials" className="py-20 px-10"> {/* Changed ID to testimonials */}
+    <section id="testimonials" className="py-20 px-10">
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-2 items-center">
           <div className="space-y-8">
@@ -88,9 +118,7 @@ export function MusicServices() {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => setCurrentTestimonial((prev) => 
-                        prev === 0 ? testimonials.length - 1 : prev - 1
-                      )}
+                      onClick={() => handleTestimonialChange('prev')}
                     >
                       <SkipBack className="h-4 w-4" />
                     </Button>
@@ -108,20 +136,18 @@ export function MusicServices() {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => setCurrentTestimonial((prev) => 
-                        prev === testimonials.length - 1 ? 0 : prev + 1
-                      )}
+                      onClick={() => handleTestimonialChange('next')}
                     >
                       <SkipForward className="h-4 w-4" />
                     </Button>
                     <div className="flex items-center gap-2 ml-auto">
                       <Volume2 className="h-4 w-4" />
                       <Slider
+                        className="w-24"
                         value={volume}
                         onValueChange={setVolume}
                         max={100}
                         step={1}
-                        className="w-24"
                       />
                     </div>
                   </div>
@@ -132,16 +158,18 @@ export function MusicServices() {
               Create Your Song
             </Button>
           </div>
-          <div className="relative aspect-video rounded-2xl overflow-hidden bg-black">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Button size="lg" variant="outline" className="text-white border-white">
-                Watch Recording Process
-              </Button>
-            </div>
+          <div id="video-section" className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
+            <iframe
+              ref={videoRef}
+              className="absolute inset-0 w-full h-full"
+              src={`https://www.youtube.com/embed/Yd7vDterctQ?autoplay=${hasIntersected ? '1' : '0'}&mute=0&controls=1&rel=0`}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
           </div>
         </div>
       </div>
     </section>
   )
 }
-
