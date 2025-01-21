@@ -1,7 +1,8 @@
 import { GeistSans } from 'geist/font/sans'
 import { Playfair_Display, Great_Vibes } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
-import { Toaster } from '@/components/ui/toaster'
+import { Toaster as SonnerToaster } from 'sonner'
+import { Toaster as UiToaster } from '@/components/ui/toaster'
 import './globals.css'
 
 const playfair = Playfair_Display({ subsets: ['latin'] })
@@ -22,7 +23,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <Toaster />
+          <UiToaster />
+          <SonnerToaster position="top-center" />
         </ThemeProvider>
       </body>
     </html>
@@ -30,4 +32,3 @@ export default function RootLayout({
 }
 
 export { playfair, greatVibes }
-
