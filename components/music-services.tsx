@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
 import { playfair } from "@/app/layout"
 import { Pause, Play, SkipBack, SkipForward, Volume2 } from 'lucide-react'
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 
 const testimonials = [
   {
@@ -41,18 +41,27 @@ export function MusicServices() {
   const videoRef = useRef<HTMLIFrameElement>(null)
   const [hasIntersected, setHasIntersected] = useState(false)
 
+  const handleTestimonialChange = useCallback((direction: 'next' | 'prev') => {
+    setCurrentTestimonial((prev) => {
+      if (direction === 'next') {
+        return prev === testimonials.length - 1 ? 0 : prev + 1
+      } else {
+        return prev === 0 ? testimonials.length - 1 : prev - 1
+      }
+    })
+  }, [])
+
   useEffect(() => {
-    const hash = window.location.hash;
+    const hash = window.location.hash
     if (hash === '#testimonials') {
-      const element = document.getElementById('testimonials');
+      const element = document.getElementById('testimonials')
       if (element) {
         setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+          element.scrollIntoView({ behavior: 'smooth' })
+        }, 100)
       }
     }
 
-    // Set up intersection observer for autoplay
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !hasIntersected) {
@@ -60,19 +69,19 @@ export function MusicServices() {
         }
       },
       { threshold: 0.5 }
-    );
+    )
 
-    const videoSection = document.getElementById('video-section');
+    const videoSection = document.getElementById('video-section')
     if (videoSection) {
-      observer.observe(videoSection);
+      observer.observe(videoSection)
     }
 
     return () => {
       if (videoSection) {
-        observer.unobserve(videoSection);
+        observer.unobserve(videoSection)
       }
-    };
-  }, [hasIntersected]);
+    }
+  }, [hasIntersected])
 
   return (
     <section id="testimonials" className="py-20 px-10">
@@ -109,9 +118,7 @@ export function MusicServices() {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => setCurrentTestimonial((prev) => 
-                        prev === 0 ? testimonials.length - 1 : prev - 1
-                      )}
+                      onClick={() => handleTestimonialChange('prev')}
                     >
                       <SkipBack className="h-4 w-4" />
                     </Button>
@@ -129,9 +136,7 @@ export function MusicServices() {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => setCurrentTestimonial((prev) => 
-                        prev === testimonials.length - 1 ? 0 : prev + 1
-                      )}
+                      onClick={() => handleTestimonialChange('next')}
                     >
                       <SkipForward className="h-4 w-4" />
                     </Button>
