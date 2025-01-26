@@ -129,6 +129,9 @@ export function HamperSection() {
                     <span className="text-lg text-muted-foreground line-through">{plan.originalPrice}</span>
                     <span className="text-muted-foreground">/song</span>
                   </div>
+                  <p className="text-red-600 font-bold text-sm flex items-center gap-2">
+                    *60% OFF <span className="bg-red-100 text-red-600 text-xs px-2 py-0.5 rounded-full">Limited Time</span>
+                  </p>
                   {plan.popular && (
                     <p className="text-sm text-pink-600 font-medium">
                       Over 1000+ customers chose this plan!
