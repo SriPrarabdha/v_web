@@ -7,11 +7,10 @@ import { playfair } from "@/app/layout"
 import { Pause, Play, SkipBack, SkipForward, Volume2 } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from "react"
 
-// Utility function to convert Google Drive link to direct download URL
+// Enhanced Google Drive URL converter
 const getGoogleDriveDirectUrl = (url: string) => {
-  const fileId = url.match(/\/d\/(.*?)\/view/)?.[1]
-  if (!fileId) return url
-  return `https://drive.google.com/uc?export=download&id=${fileId}`
+  const fileId = url.match(/\/d\/([a-zA-Z0-9_-]+)/)?.[1] || url.split('/d/')[1]?.split('/')[0]
+  return fileId ? `https://drive.google.com/uc?export=download&id=${fileId}` : url
 }
 
 const testimonials = [
@@ -53,98 +52,101 @@ export function MusicServices() {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [hasIntersected, setHasIntersected] = useState(false)
 
-  const handleTestimonialChange = useCallback((direction: 'next' | 'prev') => {
-    // Stop current audio
+  // Handle audio source changes
+  useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
-
-    // Change testimonial
-    setCurrentTestimonial((prev) => {
-      if (direction === 'next') {
-        return prev === testimonials.length - 1 ? 0 : prev + 1
-      } else {
-        return prev === 0 ? testimonials.length - 1 : prev - 1
+      audioRef.current.pause()
+      audioRef.current.load()
+      setIsPlaying(false)
+      
+      const handleError = () => {
+        console.error("Error loading audio")
+        setIsPlaying(false)
       }
-    })
+      
+      audioRef.current.addEventListener('error', handleError)
+      return () => audioRef.current?.removeEventListener('error', handleError)
+    }
+  }, [currentTestimonial])
 
-    // Reset play state
-    setIsPlaying(false)
+  const handleTestimonialChange = useCallback((direction: 'next' | 'prev') => {
+    setCurrentTestimonial((prev) => {
+      return direction === 'next' 
+        ? (prev === testimonials.length - 1 ? 0 : prev + 1)
+        : (prev === 0 ? testimonials.length - 1 : prev - 1)
+    })
   }, [])
 
-  // Handle play/pause
+  // Enhanced play/pause with error handling
   const togglePlayPause = () => {
-    if (audioRef.current) {
+    if (!audioRef.current) return
+    
+    try {
       if (isPlaying) {
         audioRef.current.pause()
       } else {
-        audioRef.current.play()
+        audioRef.current.play().catch(error => {
+          console.error("Playback failed:", error)
+          setIsPlaying(false)
+        })
       }
       setIsPlaying(!isPlaying)
+    } catch (error) {
+      console.error("Playback error:", error)
+      setIsPlaying(false)
     }
   }
 
-  // Handle volume change
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume[0] / 100
     }
   }, [volume])
 
-  // Audio ended handler
   const handleAudioEnded = () => {
     setIsPlaying(false)
   }
 
   const handleScrollToHampers = () => {
     const hamperSection = document.getElementById('hampers')
-    if (hamperSection) {
-      hamperSection.scrollIntoView({ behavior: 'smooth' })
-    }
+    hamperSection?.scrollIntoView({ behavior: 'smooth' })
   }
 
   useEffect(() => {
     const hash = window.location.hash
     if (hash === '#testimonials') {
       const element = document.getElementById('testimonials')
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }, 100)
-      }
+      element?.scrollIntoView({ behavior: 'smooth' })
     }
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasIntersected) {
-          setHasIntersected(true)
-        }
-      },
+      ([entry]) => entry.isIntersecting && !hasIntersected && setHasIntersected(true),
       { threshold: 0.5 }
     )
 
     const videoSection = document.getElementById('video-section')
-    if (videoSection) {
-      observer.observe(videoSection)
-    }
+    if (videoSection) observer.observe(videoSection)
 
     return () => {
-      if (videoSection) {
-        observer.unobserve(videoSection)
-      }
+      if (videoSection) observer.unobserve(videoSection)
     }
   }, [hasIntersected])
 
   return (
     <section id="testimonials" className="py-20 px-10">
-      {/* Hidden audio element */}
-      <audio 
+      <audio
         ref={audioRef}
-        src={getGoogleDriveDirectUrl(testimonials[currentTestimonial].audioUrl)}
+        key={currentTestimonial}
         onEnded={handleAudioEnded}
-      />
-      
+        onError={() => console.error("Audio loading error")}
+      >
+        <source
+          src={getGoogleDriveDirectUrl(testimonials[currentTestimonial].audioUrl)}
+          type="audio/mpeg"
+        />
+        Your browser does not support the audio element.
+      </audio>
+
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-2 items-center">
           <div className="space-y-8">
@@ -168,7 +170,7 @@ export function MusicServices() {
                       </p>
                     </div>
                     <div className="flex gap-1">
-                      {Array.from({ length: testimonials[currentTestimonial].rating }).map((_, i) => (
+                      {Array.from({ length: 5 }).map((_, i) => (
                         <span key={i} className="text-yellow-400">★</span>
                       ))}
                     </div>

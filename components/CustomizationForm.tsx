@@ -183,9 +183,9 @@ export const CustomizationForm = () => {
           toast.error('Please select a valid plan.')
         } else if (error.message.includes('form')) {
           toast.error('Unable to save form details. Please try again.')
-        } else {
-          toast.error('Failed to process request. Please check your information and try again.')
-        }
+        // } else {
+        //   toast.error('Failed to process request. Please check your information and try again.')
+        // }
       } else {
         toast.error('An unexpected error occurred. Please try again.')
       }
