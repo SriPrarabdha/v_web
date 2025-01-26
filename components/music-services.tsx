@@ -12,25 +12,29 @@ const testimonials = [
     name: "Kiran",
     occasion: "Anniversary Gift",
     quote: "My Boyfriend was moved to tears when he heard our story in song. Simply beautiful.",
-    rating: 5
+    rating: 5,
+    audioUrl: "https://jmp.sh/s/yop8gx0t5ANYWExpbaUU"
   },
   {
     name: "Khushi",
     occasion: "Anniversary Gift",
     quote: "The most unique and touching gift I've ever received. The quality was amazing!",
-    rating: 5
+    rating: 5,
+    audioUrl: "https://jmp.sh/s/37mXutC3r7wLhw5dh8je"
   },
   {
     name: "Ansh",
     occasion: "Propose gift",
-    quote: "The most heartfelt gift I’ve ever given—perfectly captured emotions in a beautiful song.",
-    rating: 5
+    quote: "The most heartfelt gift I've ever given—perfectly captured emotions in a beautiful song.",
+    rating: 5,
+    audioUrl: "https://jmp.sh/s/gx9Gc1kzryAn33MlnzrJ"
   },
-   {
+  {
     name: "Priyanshu",
     occasion: "Propose gift",
     quote: "The song perfectly captured the emotions and feelings of when we first met—truly magical!",
-    rating: 5
+    rating: 5,
+    audioUrl: "https://jmp.sh/s/gx9Gc1kzryAn55MlnzrJ"
   }
 ]
 
@@ -39,9 +43,17 @@ export function MusicServices() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [volume, setVolume] = useState([75])
   const videoRef = useRef<HTMLIFrameElement>(null)
+  const audioRef = useRef<HTMLAudioElement>(null)
   const [hasIntersected, setHasIntersected] = useState(false)
 
   const handleTestimonialChange = useCallback((direction: 'next' | 'prev') => {
+    // Stop current audio
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+
+    // Change testimonial
     setCurrentTestimonial((prev) => {
       if (direction === 'next') {
         return prev === testimonials.length - 1 ? 0 : prev + 1
@@ -49,7 +61,34 @@ export function MusicServices() {
         return prev === 0 ? testimonials.length - 1 : prev - 1
       }
     })
+
+    // Reset play state
+    setIsPlaying(false)
   }, [])
+
+  // Handle play/pause
+  const togglePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause()
+      } else {
+        audioRef.current.play()
+      }
+      setIsPlaying(!isPlaying)
+    }
+  }
+
+  // Handle volume change
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume[0] / 100
+    }
+  }, [volume])
+
+  // Audio ended handler
+  const handleAudioEnded = () => {
+    setIsPlaying(false)
+  }
 
   useEffect(() => {
     const hash = window.location.hash
@@ -85,6 +124,13 @@ export function MusicServices() {
 
   return (
     <section id="testimonials" className="py-20 px-10">
+      {/* Hidden audio element */}
+      <audio 
+        ref={audioRef}
+        src={testimonials[currentTestimonial].audioUrl}
+        onEnded={handleAudioEnded}
+      />
+      
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-2 items-center">
           <div className="space-y-8">
@@ -125,7 +171,7 @@ export function MusicServices() {
                     <Button
                       size="icon"
                       className="h-12 w-12"
-                      onClick={() => setIsPlaying(!isPlaying)}
+                      onClick={togglePlayPause}
                     >
                       {isPlaying ? (
                         <Pause className="h-6 w-6" />
