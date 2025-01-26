@@ -12,9 +12,9 @@ export const CustomizationForm = () => {
 
   // Plan prices mapping
   const planPrices = {
-    basic: 999,
-    enhanced: 1999,
-    premium: 2999,
+    basic: 997,
+    enhanced: 1997,
+    premium: 2997,
   }
 
   // Generate transaction ID
@@ -211,9 +211,9 @@ export const CustomizationForm = () => {
             defaultValue={selectedPlan || ""}
           >
             <option value="">Select a Plan</option>
-            <option value="basic">Basic Plan ( ₹999 )</option>
-            <option value="enhanced">Enhanced Plan ( ₹1999 )</option>
-            <option value="premium">Premium Plan ( ₹2999 )</option>
+            <option value="basic">Basic Plan ( ₹997 )</option>
+            <option value="enhanced">Enhanced Plan ( ₹1997 )</option>
+            <option value="premium">Premium Plan ( ₹2997 )</option>
             <option value="other">other</option>
           </select>
         </div>

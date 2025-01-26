@@ -97,6 +97,13 @@ export function MusicServices() {
     setIsPlaying(false)
   }
 
+  const handleScrollToHampers = () => {
+    const hamperSection = document.getElementById('hampers')
+    if (hamperSection) {
+      hamperSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   useEffect(() => {
     const hash = window.location.hash
     if (hash === '#testimonials') {
@@ -207,7 +214,11 @@ export function MusicServices() {
                 </div>
               </CardContent>
             </Card>
-            <Button size="lg" className="w-full sm:w-auto">
+            <Button 
+              size="lg" 
+              className="w-full sm:w-auto"
+              onClick={handleScrollToHampers}
+            >
               Create Your Song
             </Button>
           </div>
