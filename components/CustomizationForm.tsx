@@ -15,7 +15,6 @@ export const CustomizationForm = () => {
     basic: 999,
     enhanced: 1999,
     premium: 2999,
-    my:9
   }
 
   // Generate transaction ID
@@ -215,7 +214,6 @@ export const CustomizationForm = () => {
             <option value="basic">Basic Plan ( ₹999 )</option>
             <option value="enhanced">Enhanced Plan ( ₹1999 )</option>
             <option value="premium">Premium Plan ( ₹2999 )</option>
-            <option value="my">my Plan ( ₹9 )</option>
             <option value="other">other</option>
           </select>
         </div>

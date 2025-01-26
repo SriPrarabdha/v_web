@@ -7,34 +7,41 @@ import { playfair } from "@/app/layout"
 import { Pause, Play, SkipBack, SkipForward, Volume2 } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from "react"
 
+// Utility function to convert Google Drive link to direct download URL
+const getGoogleDriveDirectUrl = (url: string) => {
+  const fileId = url.match(/\/d\/(.*?)\/view/)?.[1]
+  if (!fileId) return url
+  return `https://drive.google.com/uc?export=download&id=${fileId}`
+}
+
 const testimonials = [
   {
     name: "Kiran",
     occasion: "Anniversary Gift",
     quote: "My Boyfriend was moved to tears when he heard our story in song. Simply beautiful.",
     rating: 5,
-    audioUrl: "https://jmp.sh/s/yop8gx0t5ANYWExpbaUU"
+    audioUrl: "https://drive.google.com/file/d/1LKEnRB8dEbFqGJGujlzVruEvjIF0z4ZQ/view?usp=sharing"
   },
   {
     name: "Khushi",
     occasion: "Anniversary Gift",
     quote: "The most unique and touching gift I've ever received. The quality was amazing!",
     rating: 5,
-    audioUrl: "https://jmp.sh/s/37mXutC3r7wLhw5dh8je"
+    audioUrl: "https://drive.google.com/file/d/1_D9fsRBNDfDygZ_qmObsvmHcYf632Joe/view?usp=sharing"
   },
   {
     name: "Ansh",
     occasion: "Propose gift",
     quote: "The most heartfelt gift I've ever given—perfectly captured emotions in a beautiful song.",
     rating: 5,
-    audioUrl: "https://jmp.sh/s/gx9Gc1kzryAn33MlnzrJ"
+    audioUrl: "https://drive.google.com/file/d/1LKEnRB8dEbFqGJGujlzVruEvjIF0z4ZQ/view?usp=sharing"
   },
   {
     name: "Priyanshu",
     occasion: "Propose gift",
     quote: "The song perfectly captured the emotions and feelings of when we first met—truly magical!",
     rating: 5,
-    audioUrl: "https://jmp.sh/s/gx9Gc1kzryAn55MlnzrJ"
+    audioUrl: "https://drive.google.com/file/d/1_D9fsRBNDfDygZ_qmObsvmHcYf632Joe/view?usp=sharing"
   }
 ]
 
@@ -127,7 +134,7 @@ export function MusicServices() {
       {/* Hidden audio element */}
       <audio 
         ref={audioRef}
-        src={testimonials[currentTestimonial].audioUrl}
+        src={getGoogleDriveDirectUrl(testimonials[currentTestimonial].audioUrl)}
         onEnded={handleAudioEnded}
       />
       
@@ -204,7 +211,7 @@ export function MusicServices() {
               Create Your Song
             </Button>
           </div>
-          <div id="video-section" className="relative md:aspect-video aspect-[9/16] rounded-lg overflow-hidden shadow-xl h-[500px] md:h-auto">
+          <div id="video-section" className="relative md:aspect-video aspect-[9/16] rounded-lg overflow-hidden shadow-xl h-[500px] md:h-auto mx-auto w-full max-w-[350px] md:max-w-none">
             <iframe
               ref={videoRef}
               className="absolute inset-0 w-full h-full"
