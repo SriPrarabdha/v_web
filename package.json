@@ -43,6 +43,7 @@
     "cmdk": "1.0.4",
     "embla-carousel-react": "8.5.1",
     "geist": "latest",
+    "google-spreadsheet": "^4.1.4",
     "googleapis": "^144.0.0",
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",
