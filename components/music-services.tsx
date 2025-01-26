@@ -204,11 +204,11 @@ export function MusicServices() {
               Create Your Song
             </Button>
           </div>
-          <div id="video-section" className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
+          <div id="video-section" className="relative md:aspect-video aspect-[9/16] rounded-lg overflow-hidden shadow-xl h-[500px] md:h-auto">
             <iframe
               ref={videoRef}
               className="absolute inset-0 w-full h-full"
-              src={`https://www.youtube.com/embed/Yd7vDterctQ?autoplay=${hasIntersected ? '1' : '0'}&mute=0&controls=1&rel=0`}
+              src={`https://www.youtube.com/embed/O-scrKcyHnE?autoplay=${hasIntersected ? '1' : '0'}&mute=0&controls=1&rel=0`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
