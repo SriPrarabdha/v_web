@@ -133,22 +133,22 @@ export function MusicServices() {
   }, [hasIntersected])
 
   return (
-    <section id="testimonials" className="py-20 px-10">
-      <audio
-        ref={audioRef}
-        key={currentTestimonial}
-        onEnded={handleAudioEnded}
-        onError={() => console.error("Audio loading error")}
-      >
-        <source
-          src={getGoogleDriveDirectUrl(testimonials[currentTestimonial].audioUrl)}
-          type="audio/mpeg"
-        />
-        Your browser does not support the audio element.
-      </audio>
+    <section id="testimonials" className="py-20 bg-gradient-to-b from-white to-pink-50 px-4 md:px-6 mx-auto">
+      <div className="container mx-auto">
+        <audio
+          ref={audioRef}
+          key={currentTestimonial}
+          onEnded={handleAudioEnded}
+          onError={() => console.error("Audio loading error")}
+        >
+          <source
+            src={getGoogleDriveDirectUrl(testimonials[currentTestimonial].audioUrl)}
+            type="audio/mpeg"
+          />
+          Your browser does not support the audio element.
+        </audio>
 
-      <div className="container">
-        <div className="grid gap-12 lg:grid-cols-2 items-center">
+        <div className="grid gap-8 lg:grid-cols-2 items-center max-w-[1200px] mx-auto">
           <div className="space-y-8">
             <div className="space-y-4">
               <h2 className={`${playfair.className} text-3xl font-bold sm:text-4xl md:text-5xl`}>
