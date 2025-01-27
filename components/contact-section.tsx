@@ -7,7 +7,8 @@ import { playfair } from "@/app/layout"
 import { Facebook, Instagram, Send, Youtube } from 'lucide-react'
 import Link from "next/link"
 import { useState } from "react"
-import { useToast } from "@/components/ui/use-toast"
+// import { useToast } from "@/components/ui/use-toast"
+import { toast } from 'sonner'
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -16,7 +17,7 @@ export function ContactSection() {
     query: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,10 +36,7 @@ export function ContactSection() {
         throw new Error('Failed to submit query');
       }
 
-      toast({
-        title: "Success!",
-        description: "We will reach out to you soon.",
-      });
+      toast.success('Form submitted successfully! We will reach out to you')
 
       // Reset form
       setFormData({
@@ -47,11 +45,7 @@ export function ContactSection() {
         query: ''
       });
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to submit your query. Please try again.",
-        variant: "destructive",
-      });
+      toast.error('Please try to submit the form again')
     } finally {
       setIsSubmitting(false);
     }
