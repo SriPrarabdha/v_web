@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster as SonnerToaster } from 'sonner'
 import { Toaster as UiToaster } from '@/components/ui/toaster'
 import './globals.css'
+import { Analytics } from '@vercel/analytics/next';
 
 const playfair = Playfair_Display({ subsets: ['latin'] })
 const greatVibes = Great_Vibes({ subsets: ['latin'], weight: '400' })
@@ -23,6 +24,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Analytics mode="production" />
           <UiToaster />
           <SonnerToaster position="top-center" />
         </ThemeProvider>
