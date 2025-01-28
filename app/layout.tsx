@@ -5,6 +5,7 @@ import { Toaster as SonnerToaster } from 'sonner'
 import { Toaster as UiToaster } from '@/components/ui/toaster'
 import './globals.css'
 import { Analytics } from '@vercel/analytics/next';
+import MetaPixel from '@/components/meta-pixel'
 
 const playfair = Playfair_Display({ subsets: ['latin'] })
 const greatVibes = Great_Vibes({ subsets: ['latin'], weight: '400' })
@@ -16,6 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <MetaPixel />
+      </head>
       <body className={GeistSans.className}>
         <ThemeProvider
           attribute="class"
