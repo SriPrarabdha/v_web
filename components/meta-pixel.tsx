@@ -2,7 +2,12 @@
 
 import Script from 'next/script';
 
-export default function MetaPixel() {
+type MetaPixelProps = {
+  event?: 'PageView' | 'AddToCart' | 'InitiateCheckout' | 'Purchase'
+  data?: Record<string, any>
+}
+
+export default function MetaPixel({ event = 'PageView', data }: MetaPixelProps) {
   return (
     <>
       <Script id="meta-pixel" strategy="afterInteractive">
@@ -17,6 +22,7 @@ export default function MetaPixel() {
           'https://connect.facebook.net/en_US/fbevents.js');
           fbq('init', '600765036158424');
           fbq('track', 'PageView');
+          ${event !== 'PageView' ? `fbq('track', '${event}', ${JSON.stringify(data || {})});` : ''}
         `}
       </Script>
       <noscript>
