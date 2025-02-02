@@ -307,7 +307,12 @@ export const CustomizationForm = () => {
           >
             <option value="">Select language</option>
             <option value="english">English</option>
+            <option value="telegu">Telegu</option>
+            <option value="kannada">Kannada</option>
             <option value="hindi">Hindi</option>
+            <option value="tamil">Tamil</option>
+            <option value="punjabi">Punjabi</option>
+
           </select>
         </div>
 
