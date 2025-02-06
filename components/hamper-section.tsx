@@ -25,8 +25,8 @@ const plans = [
     features: [
       "Professionally written and composed",
       "Personalized based on your story",
-      "High-quality audio file",
-      "Song delivery in 4 days",
+      "High-quality 60 to 90 second audio file",
+      "Song delivery in 3 days",
     ],
     color: "bg-blue-50 dark:bg-blue-950",
     hoverColor: "hover:border-blue-300 dark:hover:border-blue-700",
@@ -42,7 +42,7 @@ const plans = [
       "2–3 minute custom song",
      <b>"Custom song + video"</b>,
       "Professional video editing",
-      <b>"Delivery within 4 days"</b>,
+      <b>"Delivery within 2 days"</b>,
     ],
     color: "bg-teal-50 dark:bg-teal-950",
     hoverColor: "hover:border-teal-300 dark:hover:border-teal-700",
@@ -57,7 +57,7 @@ const plans = [
     icon: Star,
     features: [
       "2–3 minute custom song",
-      <b>"Priority 2-day delivery"</b>,
+      <b>"Priority next-day delivery"</b>,
       "Advanced video editing",
       <b>"Custom visual effects"</b>,
     ],
