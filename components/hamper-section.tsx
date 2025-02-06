@@ -59,7 +59,7 @@ const plans = [
       "2–3 minute custom song",
       <b>"Priority next-day delivery"</b>,
       <b>"Custom song + video"</b>,
-      "Advanced video editing / visual effect",
+      "Advanced video editing / visual effects",
     ],
     color: "bg-amber-50 dark:bg-amber-950",
     hoverColor: "hover:border-amber-300 dark:hover:border-amber-700",
