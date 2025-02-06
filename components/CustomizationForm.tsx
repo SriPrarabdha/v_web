@@ -13,9 +13,9 @@ export const CustomizationForm = () => {
 
   // Plan prices mapping
   const planPrices = {
-    basic: 997,
-    enhanced: 1997,
-    premium: 2997,
+    basic: 597,
+    enhanced: 997,
+    premium: 1997,
   }
 
   // Generate transaction ID

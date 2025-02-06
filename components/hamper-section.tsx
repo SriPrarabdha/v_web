@@ -19,8 +19,8 @@ const plans = [
   {
     title: "Basic Plan",
     description: "Get a heartfelt custom song delivered in just 4 days!",
-    price: "₹997",
-    originalPrice: "₹2,497",
+    price: "₹597",
+    originalPrice: "₹1,497",
     icon: Music,
     features: [
       "Professionally written and composed",
@@ -35,8 +35,8 @@ const plans = [
   {
     title: "Enhanced Plan",
     description: "A custom song with your special moments brought to life through video editing.",
-    price: "₹1,997",
-    originalPrice: "₹4,997",
+    price: "₹997",
+    originalPrice: "₹2,497",
     icon: Film,
     features: [
       "2–3 minute custom song",
@@ -52,8 +52,8 @@ const plans = [
   {
     title: "Premium Plan",
     description: "The ultimate personalized experience with a song and fully customized visuals.",
-    price: "₹2,597",
-    originalPrice: "₹6,497",
+    price: "₹1,997",
+    originalPrice: "₹4,497",
     icon: Star,
     features: [
       "2–3 minute custom song",
