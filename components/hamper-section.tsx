@@ -41,7 +41,7 @@ const plans = [
     features: [
       "Professionally written and composed",
       "Personalized based on your story",
-      "2–3 minute custom song",
+      <b>"3 minute approx. custom song"</b>,
       <b>"Delivery within 2 days"</b>,
     ],
     color: "bg-teal-50 dark:bg-teal-950",
@@ -56,7 +56,7 @@ const plans = [
     originalPrice: "₹4,497",
     icon: Star,
     features: [
-      "2–3 minute custom song",
+      "3 minute approx. custom song",
       <b>"Priority next-day delivery"</b>,
       <b>"Custom song + video"</b>,
       "Advanced video editing / visual effects",
