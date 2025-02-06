@@ -39,9 +39,9 @@ const plans = [
     originalPrice: "₹2,497",
     icon: Film,
     features: [
+      "Professionally written and composed",
+      "Personalized based on your story",
       "2–3 minute custom song",
-     <b>"Custom song + video"</b>,
-      "Professional video editing",
       <b>"Delivery within 2 days"</b>,
     ],
     color: "bg-teal-50 dark:bg-teal-950",
@@ -58,8 +58,8 @@ const plans = [
     features: [
       "2–3 minute custom song",
       <b>"Priority next-day delivery"</b>,
-      "Advanced video editing",
-      <b>"Custom visual effects"</b>,
+      <b>"Custom song + video"</b>,
+      "Advanced video editing / visual effect",
     ],
     color: "bg-amber-50 dark:bg-amber-950",
     hoverColor: "hover:border-amber-300 dark:hover:border-amber-700",
