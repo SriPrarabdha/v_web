@@ -76,7 +76,7 @@ export function HamperSection() {
   }
 
   return (
-    <section id="hampers" className="py-20 bg-gradient-to-b from-white to-pink-50 px-4 md:px-6 mx-auto">
+    <section id="hampers" className="py-20 bg-gradient-to-b from-white to-pink-50 px-4 md:px-6 mx-auto items-center">
       <div className="container">
         <div className="text-center space-y-4 mb-12">
           <h2 className={`${playfair.className} text-3xl font-bold sm:text-4xl md:text-5xl`}>
