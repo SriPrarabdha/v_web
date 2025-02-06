@@ -334,7 +334,7 @@ export const CustomizationForm = () => {
 
         <div>
           <label htmlFor="firstname" className="block text-sm font-medium text-gray-700 mb-1">
-            Mention who is the song to and who is the song from
+            Tell us your story and mention your partner's name
           </label>
           <input
             type="text"
