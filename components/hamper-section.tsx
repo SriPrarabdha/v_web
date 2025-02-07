@@ -42,7 +42,7 @@ const plans = [
       "Professionally written and composed",
       "Personalized based on your story",
       <b>"3 minute approx. custom song"</b>,
-      <b>"Delivery within 2 days"</b>,
+      <b>"Priority next-day delivery"</b>,
     ],
     color: "bg-teal-50 dark:bg-teal-950",
     hoverColor: "hover:border-teal-300 dark:hover:border-teal-700",
@@ -57,7 +57,7 @@ const plans = [
     icon: Star,
     features: [
       "3 minute approx. custom song",
-      <b>"Priority next-day delivery"</b>,
+      <b>"Delivery within 2 days"</b>,
       <b>"Custom song + video"</b>,
       "Advanced video editing / visual effects",
     ],
