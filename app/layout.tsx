@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <MetaPixel />
+        <MetaPixel event="PageView"/>
       </head>
       <body className={GeistSans.className}>
         <ThemeProvider

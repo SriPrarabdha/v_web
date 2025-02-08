@@ -1,15 +1,17 @@
-
 "use client"
 import React from 'react'
 import { Music, Calendar, Clock, Globe, Mic } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
+import MetaPixel from './meta-pixel'
 
 export const CustomizationForm = () => {
   const searchParams = useSearchParams()
   const selectedPlan = searchParams.get('plan')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showPurchasePixel, setShowPurchasePixel] = useState(false)
+  const [purchaseData, setPurchaseData] = useState<Record<string, any>>({})
 
   // Plan prices mapping
   const planPrices = {
@@ -76,8 +78,15 @@ export const CustomizationForm = () => {
 
       const { hash } = await hashResponse.json()
       
-      // Detailed logging
-      console.log('Generated Hash:', hash)
+      // Set purchase data for Meta Pixel
+      setPurchaseData({
+        currency: 'INR',
+        value: amount,
+        content_type: 'product',
+        content_name: `${formValues.plan} Plan - Customized Song`,
+        transaction_id: txnid
+      })
+      setShowPurchasePixel(true)
 
       // Create PayU payment form
       const paymentForm = document.createElement('form')
@@ -106,7 +115,6 @@ export const CustomizationForm = () => {
     } catch (error) {
       console.error('Complete Payment Processing Error:', error)
       
-      // More detailed error logging
       if (error instanceof Error) {
         console.error('Error Name:', error.name)
         console.error('Error Message:', error.message)
@@ -197,6 +205,7 @@ export const CustomizationForm = () => {
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6 item-center">
+      {showPurchasePixel && <MetaPixel event="Purchase" data={purchaseData} />}
       <h2 className="text-3xl font-bold item-center text-gray-800 mb-6">Customize Your Song</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Plan Selection */}
@@ -392,11 +401,10 @@ export const CustomizationForm = () => {
   )
 }
 
-// working code.....
-
+// working code 
 // "use client"
 // import React from 'react'
-// import { Music,Calendar, Clock, Globe, Mic } from 'lucide-react'
+// import { Music, Calendar, Clock, Globe, Mic } from 'lucide-react'
 // import { useSearchParams } from 'next/navigation'
 // import { useEffect, useState } from 'react'
 // import { toast } from 'sonner'
@@ -408,10 +416,9 @@ export const CustomizationForm = () => {
 
 //   // Plan prices mapping
 //   const planPrices = {
-//     basic: 999,
-//     enhanced: 1999,
-//     premium: 2999,
-//     my:9
+//     basic: 597,
+//     enhanced: 997,
+//     premium: 1997,
 //   }
 
 //   // Generate transaction ID
@@ -446,11 +453,11 @@ export const CustomizationForm = () => {
 //         txnid: txnid,
 //         amount: amount,
 //         productinfo: `${formValues.plan} Plan - Customized Song`,
-//         firstname: formValues.text ? formValues.text.split('!!')[0] : 'Customer',
+//         firstname: formValues.firstname || 'Customer',
 //         email: formValues.email || 'customer@example.com',
 //         phone: formValues.contact,
-//         surl: 'https://secure.payu.in/response',
-//         furl: 'https://secure.payu.in/response'
+//         surl: 'https://cbjs.payu.in/sdk/success',
+//         furl: 'https://cbjs.payu.in/sdk/failure'
 //       }
 
 //       // Generate hash via API call
@@ -518,40 +525,39 @@ export const CustomizationForm = () => {
 //     setIsSubmitting(true)
 
 //     try {
-//       const formData = new FormData(event.currentTarget)
-//       const formValues = {
-//         plan: formData.get('plan'),
-//         contact: formData.get('contact'),
-//         mood: formData.get('mood'),
-//         occasion: formData.get('occasion'),
-//         length: formData.get('length'),
-//         language: formData.get('language'),
-//         artist: formData.get('artist'),
-//         text: formData.get('text')
-//       }
+//       const formValues = Object.fromEntries(new FormData(event.currentTarget))
 
-//       // Detailed logging of form values
-//       console.log('Form Values:', formValues)
+//       // Save form data to Google Sheets
+//       try {
+//         const sheetResponse = await fetch('/api/submit-form', {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//           body: JSON.stringify({
+//             firstname: formValues.firstname,
+//             email: formValues.email,
+//             contact: formValues.contact,
+//             occasion: formValues.occasion,
+//             details: formValues.details,
+//             plan: formValues.plan,
+//             amount: planPrices[formValues.plan as keyof typeof planPrices] || 0,
+//             transactionId: generateTxnId(),
+//             timestamp: new Date().toISOString()
+//           }),
+//         })
+
+//         if (!sheetResponse.ok) {
+//           console.error('Failed to save to Google Sheets')
+//         }
+//       } catch (error) {
+//         console.error('Error saving to Google Sheets:', error)
+//       }
 
 //       // Get plan amount
 //       const amount = planPrices[formValues.plan as keyof typeof planPrices] || 0
 //       if (!amount) {
 //         throw new Error('Invalid plan selected')
-//       }
-
-//       // First save form data
-//       const formResponse = await fetch('/api/submit-form', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(formValues),
-//       })
-
-//       const responseData = await formResponse.json()
-
-//       if (!responseData.success) {
-//         throw new Error(responseData.error || 'Failed to submit form')
 //       }
 
 //       // Then initiate payment
@@ -609,10 +615,9 @@ export const CustomizationForm = () => {
 //             defaultValue={selectedPlan || ""}
 //           >
 //             <option value="">Select a Plan</option>
-//             <option value="basic">Basic Plan ( ₹999 )</option>
-//             <option value="enhanced">Enhanced Plan ( ₹1999 )</option>
-//             <option value="premium">Premium Plan ( ₹2999 )</option>
-//             <option value="my">my Plan ( ₹9 )</option>
+//             <option value="basic">Basic Plan ( ₹997 )</option>
+//             <option value="enhanced">Enhanced Plan ( ₹1997 )</option>
+//             <option value="premium">Premium Plan ( ₹2997 )</option>
 //             <option value="other">other</option>
 //           </select>
 //         </div>
@@ -705,7 +710,12 @@ export const CustomizationForm = () => {
 //           >
 //             <option value="">Select language</option>
 //             <option value="english">English</option>
+//             <option value="telegu">Telegu</option>
+//             <option value="kannada">Kannada</option>
 //             <option value="hindi">Hindi</option>
+//             <option value="tamil">Tamil</option>
+//             <option value="punjabi">Punjabi</option>
+
 //           </select>
 //         </div>
 
@@ -727,14 +737,42 @@ export const CustomizationForm = () => {
 
 //         <div>
 //           <label htmlFor="firstname" className="block text-sm font-medium text-gray-700 mb-1">
-//             Mention who is the song to and who is the song from
+//             Tell us your story and mention your partner's name
 //           </label>
 //           <input
 //             type="text"
-//             id="text"
-//             name="text"
+//             id="firstname"
+//             name="firstname"
 //             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F94D8F]"
 //             placeholder="This song is for my wife Neha!!"
+//             required
+//           />
+//         </div>
+
+//         <div>
+//           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+//             Email
+//           </label>
+//           <input
+//             type="email"
+//             id="email"
+//             name="email"
+//             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F94D8F]"
+//             placeholder="example@example.com"
+//             required
+//           />
+//         </div>
+
+//         <div>
+//           <label htmlFor="details" className="block text-sm font-medium text-gray-700 mb-1">
+//             What are the 4 things from your story that must be included in the song?
+//           </label>
+//           <input
+//             type="text"
+//             id="details"
+//             name="details"
+//             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F94D8F]"
+//             placeholder="1) her name Khushi, 2) how me met, 3) baby boo, 4) moving downtown"
 //             required
 //           />
 //         </div>
